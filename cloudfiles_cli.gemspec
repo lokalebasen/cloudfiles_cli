@@ -14,4 +14,6 @@ Gem::Specification.new do |gem|
   gem.name          = "cloudfiles_cli"
   gem.require_paths = ["lib"]
   gem.version       = CloudfilesCli::VERSION
+  gem.add_dependency "thor"
+  gem.add_dependency "fog"
 end
