@@ -1,24 +1,29 @@
 # CloudfilesCli
 
-TODO: Write a gem description
+A small utility for interacting with files stored on Rackspace Cloudfiles
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'cloudfiles_cli'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+Install it:
 
     $ gem install cloudfiles_cli
 
 ## Usage
 
-TODO: Write usage instructions here
+Basic usage:
+
+    $ cloudfiles_cli help
+
+Either pass in credentials on the command line:
+
+    $ cloudfiles_cli upload --username=john --api-key=something --auth-url=https://lon.identity.api.rackspacecloud.com/v2.0 my_dir some_file.txt remote_filename.txt
+
+Or use environment variables:
+
+    $ export CLOUDFILES_USERNAME=john
+    $ export CLOUDFILES_API_KEY=something
+    $ export CLOUDFILES_AUTH_URL=https://lon.identity.api.rackspacecloud.com/v2.0
+    $ cloudfiles_cli upload my_dir some_file.txt remote_filename.txt
 
 ## Contributing
 
