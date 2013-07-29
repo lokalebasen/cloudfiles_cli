@@ -20,7 +20,12 @@ module CloudfilesCli
     def download(container_name, remotefile, localfile)
       container = connection.directories.get(container_name)
       object = container.files.get(remotefile)
-      IO.binwrite(localfile, object.body)
+      if object.nil?
+        STDERR.puts "File #{remotefile} not found on cloudfiles"
+        exit 1
+      else
+        IO.binwrite(localfile, object.body)
+      end
     end
   end
 end
