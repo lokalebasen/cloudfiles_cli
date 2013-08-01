@@ -25,6 +25,12 @@ module CloudfilesCli
       end
     end
 
+    def exists(container_name, remotefile)
+      container(container_name).files.head(remotefile) ||
+        abort("#{remotefile} missing from #{container_name}")
+      puts("#{remotefile} found in #{container_name}")
+    end
+
     def container(container_name)
       connection.directories.get(container_name) ||
         abort("Container #{container_name} not found on cloudfiles")
