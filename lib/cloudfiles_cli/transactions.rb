@@ -11,21 +11,23 @@ module CloudfilesCli
     end
 
     def upload(container_name, localfile, remotefile)
-      container = connection.directories.get(container_name)
-      object = container.files.create(
+      container(container_name).files.create(
         :key => remotefile, :body => File.open(localfile)
       )
     end
 
     def download(container_name, remotefile, localfile)
-      container = connection.directories.get(container_name)
-      object = container.files.get(remotefile)
+      object = container(container_name).files.get(remotefile)
       if object.nil?
-        STDERR.puts "File #{remotefile} not found on cloudfiles"
-        exit 1
+        abort "File #{remotefile} not found on cloudfiles"
       else
         IO.binwrite(localfile, object.body)
       end
+    end
+
+    def container(container_name)
+      connection.directories.get(container_name) ||
+        abort("Container #{container_name} not found on cloudfiles")
     end
   end
 end
