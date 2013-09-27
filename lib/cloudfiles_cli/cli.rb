@@ -23,5 +23,13 @@ module CloudfilesCli
     def exists(container, remote_filename)
       Transactions.new(Config.new(options)).exists(container, remote_filename)
     end
+
+    desc "list CONTAINER", "List container contents"
+    option :username
+    option :api_key
+    option :auth_url
+    def list(container)
+      Transactions.new(Config.new(options)).list(container)
+    end
   end
 end

@@ -31,6 +31,10 @@ module CloudfilesCli
       puts("#{remotefile} found in #{container_name}")
     end
 
+    def list(container_name)
+      puts container(container_name).files.map(&:key)
+    end
+
     def container(container_name)
       connection.directories.get(container_name) ||
         abort("Container #{container_name} not found on cloudfiles")
