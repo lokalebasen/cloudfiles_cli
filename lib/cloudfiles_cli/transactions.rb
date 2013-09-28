@@ -32,12 +32,21 @@ module CloudfilesCli
     end
 
     def list(container_name)
-      puts container(container_name).files.map(&:key)
+      if container_name
+        puts container(container_name).files.map(&:key)
+      else
+        puts containers.map(&:key)
+      end
     end
 
     def container(container_name)
-      connection.directories.get(container_name) ||
+      containers.get(container_name) ||
         abort("Container #{container_name} not found on cloudfiles")
     end
+
+    def containers
+      connection.directories
+    end
+
   end
 end
