@@ -25,6 +25,15 @@ module CloudfilesCli
       end
     end
 
+    def delete(container_name, remotefile)
+      object = container(container_name).files.get(remotefile)
+      if object.nil?
+        abort "File #{remotefile} not found on cloudfiles"
+      else
+        object.destroy
+      end
+    end
+
     def exists(container_name, remotefile)
       container(container_name).files.head(remotefile) ||
         abort("#{remotefile} missing from #{container_name}")
