@@ -36,8 +36,8 @@ module CloudfilesCli
     option :username
     option :api_key
     option :auth_url
-    def delete(container, remote_filename)
-      Transactions.new(Config.new(options)).delete(container, remote_filename)
+    def delete(container, *remote_filenames)
+      Transactions.new(Config.new(options)).delete(container, remote_filenames)
     end
   end
 end
