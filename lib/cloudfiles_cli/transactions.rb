@@ -45,7 +45,9 @@ module CloudfilesCli
 
     def list(container_name)
       if container_name
-        puts container(container_name).files.map(&:key)
+        puts container(container_name).files.map{|file|
+          "#{file.key} #{file.last_modified.strftime('%FT%R')}"
+        }
       else
         puts containers.map(&:key)
       end
