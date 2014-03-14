@@ -4,6 +4,7 @@ module CloudfilesCli
     option :username
     option :api_key
     option :auth_url
+    option :region
     def download(container, remote_filename, local_filename=nil)
       Transactions.new(Config.new(options)).download(container, remote_filename, local_filename || File.basename(remote_filename))
     end
@@ -12,6 +13,7 @@ module CloudfilesCli
     option :username
     option :api_key
     option :auth_url
+    option :region
     def upload(container, local_filename, remote_filename=nil)
       Transactions.new(Config.new(options)).upload(container, local_filename, remote_filename || File.basename(local_filename))
     end
@@ -20,6 +22,7 @@ module CloudfilesCli
     option :username
     option :api_key
     option :auth_url
+    option :region
     def exists(container, remote_filename)
       Transactions.new(Config.new(options)).exists(container, remote_filename)
     end
@@ -28,6 +31,7 @@ module CloudfilesCli
     option :username
     option :api_key
     option :auth_url
+    option :region
     def list(container = nil)
       Transactions.new(Config.new(options)).list(container)
     end
@@ -36,6 +40,7 @@ module CloudfilesCli
     option :username
     option :api_key
     option :auth_url
+    option :region
     def delete(container, *remote_filenames)
       Transactions.new(Config.new(options)).delete(container, remote_filenames)
     end

@@ -17,11 +17,17 @@ module CloudfilesCli
       options[:auth_url] || ENV['CLOUDFILES_AUTH_URL'] || raise("No auth url provided")
     end
 
+    def region
+      options[:region] || ENV['CLOUDFILES_REGION'] || raise("No region provided")
+    end
+
+
     def hash
       {
         :rackspace_username => username,
         :rackspace_api_key  => api_key,
-        :rackspace_auth_url => auth_url
+        :rackspace_auth_url => auth_url,
+        :rackspace_region => region.to_sym,
       }
     end
   end
